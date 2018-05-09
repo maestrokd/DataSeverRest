@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>DataSaver</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h2>DataSaver</h2>
+<h4>Endings Url from task:</h4>
+<p>ffb2e977797440719208b510ed91548b/documents</p>
+<p>6aa21ab58b0f402591ef4cc6abebe6c3/documents</p>
+<p>800384f02be04ce091277202897de676/documents</p>
+
+<div th:if="${errorMessage}">
+    <p>Error!!! <span th:text="${errorMessage}"/></p>
+</div>
+
+<form action="/">
+    <fieldset>
+        <label>Put ending url:</label>
+        <input type="text" name="endingUrl"/>
+        <input type="submit" value="Download data"/>
+    </fieldset>
+</form>
+
+<p><span th:text="(${numberOfSavedObjects} == null) ? 0 : ${numberOfSavedObjects}"/> object(s) saved to Database:</p>
+<div th:if="${myObjects}">
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>hash</th>
+            <th>format</th>
+            <th>url</th>
+            <th>documentOf</th>
+            <th>datePublished</th>
+            <th>dateModified</th>
+            <th>relatedItem</th>
+        </tr>
+        <tr data-th-each="item : ${myObjects}">
+            <td data-th-text="${item.id}">...</td>
+            <td data-th-text="${item.title}">...</td>
+            <td data-th-text="${item.hash}">...</td>
+            <td data-th-text="${item.format}">...</td>
+            <td data-th-text="${item.url}">...</td>
+            <td data-th-text="${item.documentOf}">...</td>
+            <td data-th-text="${item.datePublished}">...</td>
+            <td data-th-text="${item.dateModified}">...</td>
+            <td data-th-text="${item.relatedItem}">...</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
