@@ -11,13 +11,18 @@ import java.util.List;
 @Service(value = "dataFromServerService")
 public class DataFromServerServiceImpl implements DataFromServerService {
 
+    // Fields
     private DataFromServerRepository dataFromServerRepository;
 
+
+    // Setters
     @Autowired
     public void setDataFromServerRepository(DataFromServerRepository dataFromServerRepository) {
         this.dataFromServerRepository = dataFromServerRepository;
     }
 
+
+    // Methods
     @Override
     public List<DataFromServer> saveAll(List<DataFromServer> dataFromServerList) {
         List<DataFromServer> savedDataFromServerList = new ArrayList<>();

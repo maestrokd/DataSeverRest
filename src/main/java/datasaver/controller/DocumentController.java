@@ -36,38 +36,6 @@ public class DocumentController {
     }
 
 
-    // Methods
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public ModelAndView getIndex(
-//            @ModelAttribute("endingUrl")
-//                    String endingUrl
-//    ) throws IOException {
-//        if ("".equals(endingUrl)) {
-//            return new ModelAndView("index");
-//        }
-//
-//        String url = STARTING_URL + endingUrl;
-//        ModelAndView modelAndView = new ModelAndView();
-//
-//        List<DataFromServer> dataFromServerList = dataDownloader.downloadDataFromServer(url);
-//
-//        if (dataFromServerList.isEmpty()) {
-//            modelAndView.addObject("errorMessage", "Bad URL");
-//            modelAndView.setViewName("index");
-//            return modelAndView;
-//        }
-//
-//        List<DataFromServer> dataFromServerListFromDB = dataFromServerService.saveAll(dataFromServerList);
-//        modelAndView.addObject("numberOfSavedObjects", dataFromServerListFromDB.size());
-//        modelAndView.addObject("myObjects", dataFromServerListFromDB);
-//        modelAndView.setViewName("index");
-//        return modelAndView;
-//    }
-
-
-
-
-
     @RequestMapping(value = "/api/documents/downloadAndSaveToDB", method = RequestMethod.GET)
     public ResponseEntity<List<DataFromServer>> doDownloadAndSaveToDB(
             @ModelAttribute("endingUrl")
@@ -82,11 +50,11 @@ public class DocumentController {
         List<DataFromServer> dataFromServerList = dataDownloader.downloadDataFromServer(url);
 
         if (dataFromServerList.isEmpty()) {
-            return new ResponseEntity<List<DataFromServer>>(dataFromServerList, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(dataFromServerList, HttpStatus.BAD_REQUEST);
         }
 
         List<DataFromServer> dataFromServerListFromDB = dataFromServerService.saveAll(dataFromServerList);
-        return new ResponseEntity<List<DataFromServer>>(dataFromServerListFromDB, HttpStatus.OK);
+        return new ResponseEntity<>(dataFromServerListFromDB, HttpStatus.OK);
     }
 
 
